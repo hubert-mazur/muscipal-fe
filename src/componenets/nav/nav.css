@@ -1,0 +1,8 @@
+.sidebar {
+    width: 250px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    text-align: left;
+    margin-left: 10px;
+}
