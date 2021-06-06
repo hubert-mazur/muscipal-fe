@@ -16,7 +16,7 @@ export default function (props) {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            let resp = await axios.post("http://localhost:8080/api/login", JSON.stringify({
+            let resp = await axios.post("https://still-garden-02215.herokuapp.com/api/login", JSON.stringify({
                 email: email,
                 password: password
             }));

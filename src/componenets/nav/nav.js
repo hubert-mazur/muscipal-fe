@@ -20,7 +20,7 @@ function Nav(props) {
         const getData = async () => {
             try {
                 const response = await axios.get(
-                    'http://localhost:8080/api/person/identity', {
+                    'https://still-garden-02215.herokuapp.com/api/person/identity', {
                         headers: {
                             'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')

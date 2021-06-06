@@ -20,7 +20,7 @@ function AddEvent(props) {
         const getData = async () => {
             try {
                 const response = await axios.get(
-                    'http://localhost:8080/api/person', {
+                    'https://still-garden-02215.herokuapp.com/api/person', {
                         headers: {
                             'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
@@ -46,7 +46,7 @@ function AddEvent(props) {
             participants: chosenPeople
         }
         try {
-            const response = await axios.post('http://localhost:8080/api/event', JSON.stringify(data) ,{
+            const response = await axios.post('https://still-garden-02215.herokuapp.com/api/event', JSON.stringify(data) ,{
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('auth-token')

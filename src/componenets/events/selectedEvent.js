@@ -26,7 +26,7 @@ function SelectedEvent(props) {
 
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/event/${props.match.params.eventId}/link`, JSON.stringify({link: link}), {
+                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}/link`, JSON.stringify({link: link}), {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
@@ -67,7 +67,7 @@ function SelectedEvent(props) {
     async function deleteLink(linkId) {
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/event/${props.match.params.eventId}/links/${linkId}/`, {
+                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}/links/${linkId}/`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
@@ -88,7 +88,7 @@ function SelectedEvent(props) {
         let ev = null;
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/event/${props.match.params.eventId}`, {
+                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')

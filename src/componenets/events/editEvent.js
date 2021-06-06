@@ -28,7 +28,7 @@ function EditEvent(props) {
 
         try {
             let response = await axios.put(
-                `http://hm-musicpal-be.mybluemix.net/api/event/${editingEvent.id}`, JSON.stringify(data), {
+                `https://still-garden-02215.herokuapp.com/api/event/${editingEvent.id}`, JSON.stringify(data), {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
@@ -51,7 +51,7 @@ function EditEvent(props) {
         const getData = async () => {
             try {
                 let response = await axios.get(
-                    `http://localhost:8080/api/person`, {
+                    `https://still-garden-02215.herokuapp.com/api/person`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
@@ -62,7 +62,7 @@ function EditEvent(props) {
                 setUsers(response.data);
 
                 response = await axios.get(
-                    `http://localhost:8080/api/event/participants/${editingEvent.id}`, {
+                    `https://still-garden-02215.herokuapp.com/api/event/participants/${editingEvent.id}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')

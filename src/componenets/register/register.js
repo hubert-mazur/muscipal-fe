@@ -20,7 +20,7 @@ export default function (props) {
 
         try {
             await axios.post(
-                "http://localhost:8080/api/register",
+                "https://still-garden-02215.herokuapp.com/api/register",
                 JSON.stringify({
                     firstName: firstName,
                     lastName: lastName,

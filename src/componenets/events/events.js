@@ -15,7 +15,7 @@ function Events(props) {
     const getData = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:8080/api/event', {
+                'https://still-garden-02215.herokuapp.com/api/event', {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
@@ -45,7 +45,7 @@ function Events(props) {
     async function archive(eventId) {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/event/${eventId}/archive`, {
+                `https://still-garden-02215.herokuapp.com/api/event/${eventId}/archive`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
@@ -63,7 +63,7 @@ function Events(props) {
     async function deleteEvent(eventId) {
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/event/${eventId}`, {
+                `https://still-garden-02215.herokuapp.com/api/event/${eventId}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
