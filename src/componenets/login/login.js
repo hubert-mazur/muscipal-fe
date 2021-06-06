@@ -22,10 +22,11 @@ export default function (props) {
             }));
             localStorage.setItem('auth-token', resp.data);
 
-            props.history.push('/api/nav');
+            props.history.push('/api/welcome');
 
         } catch (err) {
-            console.error(err.response)
+            // console.error(err)
+            if (err && err.response && err.response.data)
             setError(err.response.data.message);
         }
     }

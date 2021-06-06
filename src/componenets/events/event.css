@@ -1,0 +1,75 @@
+.linkDiv {
+    margin-top: 50px;
+    color: crimson;
+}
+
+.allLinks {
+    margin-top: 100px;
+}
+
+#eventTitle {
+    color: darkblue;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+#eventDescription {
+    color: crimson;
+}
+
+.singleLink {
+    display: flex;
+
+}
+
+.linkImage {
+    flex: 0 0  35%;
+    margin-left: 250px;
+}
+
+.divCaption {
+    flex: 1;
+    height: available;
+    display: block;
+    align-items: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(30%);
+}
+
+
+.icon {
+    color: darkblue;
+    display: block;
+}
+
+.actionButtons, .eventActionButtons > *{
+    margin-left: 20px;
+    margin-top: 20px;
+    transform: scale(1.3);
+}
+
+.actionButtons, .eventActionButtons > *:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.eventsContainer {
+    margin-top: 100px;
+}
+
+.eventDiv {
+
+}
+
+.eventDetails {
+
+}
+
+.eventActionButtons > .icon {
+    color: blue;
+}
+
+.eventActionButtons> .icon :hover {
+    color: green;
+}
