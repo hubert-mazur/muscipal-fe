@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../axios";
 import "./event.css"
 import EditEvent from "./editEvent";
 import {Archive, Delete, PlaylistPlay, Settings} from "@material-ui/icons";
@@ -15,9 +15,8 @@ function Events(props) {
     const getData = async () => {
         try {
             const response = await axios.get(
-                'https://still-garden-02215.herokuapp.com/api/event', {
+                'api/event', {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -45,9 +44,8 @@ function Events(props) {
     async function archive(eventId) {
         try {
             const response = await axios.get(
-                `https://still-garden-02215.herokuapp.com/api/event/${eventId}/archive`, {
+                `api/event/${eventId}/archive`, {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -63,9 +61,8 @@ function Events(props) {
     async function deleteEvent(eventId) {
         try {
             const response = await axios.delete(
-                `https://still-garden-02215.herokuapp.com/api/event/${eventId}`, {
+                `api/event/${eventId}`, {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../axios";
 import {Button, TextField} from "@material-ui/core";
 import "./event.css"
 import {
@@ -26,9 +26,8 @@ function SelectedEvent(props) {
 
         try {
             const response = await axios.put(
-                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}/link`, JSON.stringify({link: link}), {
+                `api/event/${props.match.params.eventId}/link`, JSON.stringify({link: link}), {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -48,9 +47,8 @@ function SelectedEvent(props) {
     async function voteLink(linkId, upvote = true) {
         try {
             const response = await axios.patch(
-                `http://localhost:8080/api/event/${props.match.params.eventId}/link/${linkId}/${upvote === true ? "upvote" : "downvote"}`, JSON.stringify({link: link}), {
+                `api/event/${props.match.params.eventId}/link/${linkId}/${upvote === true ? "upvote" : "downvote"}`, JSON.stringify({link: link}), {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -67,9 +65,8 @@ function SelectedEvent(props) {
     async function deleteLink(linkId) {
         try {
             const response = await axios.delete(
-                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}/links/${linkId}/`, {
+                `api/event/${props.match.params.eventId}/links/${linkId}/`, {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -88,9 +85,8 @@ function SelectedEvent(props) {
         let ev = null;
         try {
             const response = await axios.get(
-                `https://still-garden-02215.herokuapp.com/api/event/${props.match.params.eventId}`, {
+                `api/event/${props.match.params.eventId}`, {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
@@ -110,11 +106,7 @@ function SelectedEvent(props) {
                 ev.links.map(async (link) => {
                     // console.log(link);
                     const response = await axios.get(
-                        `https://www.youtube.com/oembed?url=${link.link}&format=json`, {
-                            headers: {
-                                'Content-Type': 'application/json',
-                            }
-                        }
+                        `https://www.youtube.com/oembed?url=${link.link}&format=json`
                     );
                     let imageURL = link.link.split("v=")[1];
                     // console.error(link);

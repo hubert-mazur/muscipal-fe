@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../axios";
 import Alert from "@material-ui/lab/Alert";
 import {AccountCircle, ExitToApp, Home} from "@material-ui/icons";
 import "./nav.css"
@@ -20,9 +20,8 @@ function Nav(props) {
         const getData = async () => {
             try {
                 const response = await axios.get(
-                    'https://still-garden-02215.herokuapp.com/api/person/identity', {
+                    'api/person/identity', {
                         headers: {
-                            'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
                         }
                     }

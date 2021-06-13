@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Alert, Autocomplete} from "@material-ui/lab";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import axios from "axios";
+import axios from "../axios";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -20,9 +20,8 @@ function AddEvent(props) {
         const getData = async () => {
             try {
                 const response = await axios.get(
-                    'https://still-garden-02215.herokuapp.com/api/person', {
+                    'api/person', {
                         headers: {
-                            'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
                         }
                     }
@@ -46,9 +45,8 @@ function AddEvent(props) {
             participants: chosenPeople
         }
         try {
-            const response = await axios.post('https://still-garden-02215.herokuapp.com/api/event', JSON.stringify(data) ,{
+            const response = await axios.post('api/event', JSON.stringify(data), {
                 headers: {
-                    'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('auth-token')
                 }
             })

@@ -3,7 +3,7 @@ import {Button, Checkbox, TextareaAutosize, TextField} from "@material-ui/core";
 import {Alert, Autocomplete} from "@material-ui/lab";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import axios from "axios";
+import axios from "../axios";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small"/>;
 const checkedIcon = <CheckBoxIcon fontSize="small"/>;
@@ -28,14 +28,15 @@ function EditEvent(props) {
 
         try {
             let response = await axios.put(
-                `https://still-garden-02215.herokuapp.com/api/event/${editingEvent.id}`, JSON.stringify(data), {
+                `api/event/${editingEvent.id}`, JSON.stringify(data), {
                     headers: {
-                        'Content-Type': 'application/json',
                         'auth-token': localStorage.getItem('auth-token')
                     }
                 }
             );
             // console.log(response);
+
+            // props.history.push('/api/welcome')
 
         } catch (ex) {
             setError(ex.response);
@@ -51,20 +52,18 @@ function EditEvent(props) {
         const getData = async () => {
             try {
                 let response = await axios.get(
-                    `https://still-garden-02215.herokuapp.com/api/person`, {
+                    `api/person`
+                    , {
                         headers: {
-                            'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
                         }
-                    }
-                );
+                    });
                 // console.log(response.data);
                 setUsers(response.data);
 
                 response = await axios.get(
-                    `https://still-garden-02215.herokuapp.com/api/event/participants/${editingEvent.id}`, {
+                    `api/event/participants/${editingEvent.id}`, {
                         headers: {
-                            'Content-Type': 'application/json',
                             'auth-token': localStorage.getItem('auth-token')
                         }
                     }
@@ -82,7 +81,6 @@ function EditEvent(props) {
         getData();
     }, [])
 
-
     return (
         <div>
             {
@@ -93,50 +91,49 @@ function EditEvent(props) {
                 </Alert>)
             }
             <form noValidate autoComplete="off" className="form" onSubmit={handleSubmit}>
-            <TextField id="title" label={"event title"} type="text" value={title} onChange={(event) => {
-                setTitle(event.target.value);
-            }}>
-            </TextField>
+                <TextField id="title" label={"event title"} type="text" value={title} onChange={(event) => {
+                    setTitle(event.target.value);
+                }}>
+                </TextField>
 
-            <TextareaAutosize id={"description"} label={"description"} placeholder={"event description"}
-                              value={description}
-                              onChange={(event) => {
-                                  setDescription(event.target.value);
-                              }}>
-            </TextareaAutosize>
+                <TextareaAutosize id={"description"} label={"description"} placeholder={"event description"}
+                                  value={description}
+                                  onChange={(event) => {
+                                      setDescription(event.target.value);
+                                  }}>
+                </TextareaAutosize>
 
-            {users && chosenPeople && (<Autocomplete
-                multiple
-                id="chosenPeople"
-                options={users}
-                onChange={(event, value) => setChosenPeople(value)}
-                disableCloseOnSelect
-                value={chosenPeople}
-                getOptionSelected={(option, value) => option.id === value.id}
-                getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-                renderOption={(option, {selected}) => (
-                    <React.Fragment>
-                        <Checkbox
-                            icon={icon}
-                            checkedIcon={checkedIcon}
-                            style={{marginRight: 8}}
-                            checked={selected}
-                        />
-                        {`${option.firstName} ${option.lastName}`}
-                    </React.Fragment>
-                )}
-                style={{width: 500}}
-                renderInput={(params) => (
-                    <TextField {...params} variant="outlined" label="Choose people to be invited"/>
-                )}
-            />)}
+                {users && chosenPeople && (<Autocomplete
+                    multiple
+                    id="chosenPeople"
+                    options={users}
+                    onChange={(event, value) => setChosenPeople(value)}
+                    disableCloseOnSelect
+                    value={chosenPeople}
+                    getOptionSelected={(option, value) => option.id === value.id}
+                    getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
+                    renderOption={(option, {selected}) => (
+                        <React.Fragment>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{marginRight: 8}}
+                                checked={selected}
+                            />
+                            {`${option.firstName} ${option.lastName}`}
+                        </React.Fragment>
+                    )}
+                    style={{width: 500}}
+                    renderInput={(params) => (
+                        <TextField {...params} variant="outlined" label="Choose people to be invited"/>
+                    )}
+                />)}
 
-            <Button type="submit" disabled={!validateTextArea()}>Add event</Button>
+                <Button type="submit" disabled={!validateTextArea()}>Add event</Button>
 
-        </form>
+            </form>
         </div>
     )
 }
-
 
 export default EditEvent;
